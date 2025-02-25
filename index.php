@@ -51,15 +51,33 @@
     <title>PHP Hotel</title>
 </head>
 <body>
-    <?php
-    
-    foreach ($hotels as $hotel){
-        foreach ($hotel as $key => $value){
-            echo $key.": ".$value."<br>";
-        }
-        echo "<br>";
-    }
+    <div class="my-3">
+        <h1 class="text-center">Filters</h1>
+        <form action="" method="GET" class="d-flex gap-3 p-3 justify-content-center">
+            <div class="d-flex gap-2">
+                <label class="form-label" for="vote">Vote</label>
+                <input class="form-control" type="number" name="vote" id="vote" min="1" max="5">
+            </div>
+            <div>
+                <label class="form-check-label" for="parking">Parking</label>
+                <input class="form-check-input" type="checkbox" name="parking" id="parking">
+            </div>
+            <div>
+                <button class="btn btn-light" type="submit">Filter</button>
+            </div>
+        </form>
+        <hr>
+    </div>
 
-    ?>
+    <div class="my-3">
+        <h1 class="text-center">Hotels</h1>
+        <?php
+            foreach ($hotels as $hotel){
+                foreach ($hotel as $key => $value) echo $key.": ".$value."<br>";
+                echo "<br>";
+            }
+        ?>
+    </div>
+    
 </body>
 </html>
