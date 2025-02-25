@@ -51,8 +51,8 @@
     <title>PHP Hotel</title>
 </head>
 <body>
-    <div class="my-3">
-        <h1 class="text-center">Filters</h1>
+    <section class="my-3">
+        <h1 class="text-center mb-3">Filters</h1>
         <form action="" method="GET" class="d-flex gap-3 p-3 justify-content-center">
             <div class="d-flex gap-2">
                 <label class="form-label" for="vote">Vote</label>
@@ -67,17 +67,24 @@
             </div>
         </form>
         <hr>
-    </div>
+    </section>
 
-    <div class="my-3">
-        <h1 class="text-center">Hotels</h1>
-        <?php
-            foreach ($hotels as $hotel){
-                foreach ($hotel as $key => $value) echo $key.": ".$value."<br>";
-                echo "<br>";
-            }
-        ?>
-    </div>
+    <section class="container my-3">
+        <h1 class="text-center mb-3">Hotels</h1>
+        <div class="row gap-3">
+            <?php
+                foreach ($hotels as $hotel){
+                    echo "<div class='col d-flex justify-content-center'>";
+                    echo "<div class='card' style='min-width: 18rem;'>";
+                    foreach ($hotel as $key => $value){
+                        echo "<div class='card-body'> <h5 class='card-title'>$value</h5> </div>";
+                    };
+                    echo "</div>";
+                    echo "</div>";
+                }
+            ?>
+        </div>
+    </section>
     
 </body>
 </html>
