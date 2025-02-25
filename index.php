@@ -79,6 +79,7 @@
                     if (isset($_GET["parking"]) && isset($_GET["vote"])) return $hotel['parking'] === true && $hotel['vote'] >= $_GET['vote'];
                     if (isset($_GET["parking"])) return $hotel['parking'] === true;
                     if (isset($_GET["vote"])) return $hotel['vote'] >= $_GET['vote'];
+                    return $hotel;
                 }); 
 
                 // Print hotels
