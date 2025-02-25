@@ -73,26 +73,37 @@
         <h1 class="text-center mb-3">Hotels</h1>
         <div class="row gap-3">
             <?php
+                
+                // Filter hotels
                 $filteredHotels = array_filter($hotels, function($hotel){
                     if (isset($_GET["parking"]) && isset($_GET["vote"])) return $hotel['parking'] === true && $hotel['vote'] >= $_GET['vote'];
                     if (isset($_GET["parking"])) return $hotel['parking'] === true;
                     if (isset($_GET["vote"])) return $hotel['vote'] >= $_GET['vote'];
                 }); 
 
+                // Print hotels
                 foreach ($filteredHotels as $hotel){
-                    echo "<div class='col d-flex justify-content-center'>";
-                    echo "<div class='card' style='min-width: 18rem;'>";
-                    echo "<div class='card-body'>";
+                    echo "<div class='col d-flex justify-content-center'> <div class='card' style='min-width: 18rem;'> <div class='card-body'>";
                     foreach ($hotel as $key => $value){
-                        if ($key === "name") echo "<h5 class='card-title'>$value</h5>";
-                        if ($key === "description") echo "<p class='card-text'>$value</p>";
-                        if ($key === "parking") echo "<p class='card-text'>$value</p>";
-                        if ($key === "vote") echo "<span class='card-text me-3'>$value</span>";
-                        if ($key === "distance_to_center") echo "<span class='card-text'>$value</span>";
+                        switch ($key) {
+                            case "name":
+                                echo "<h5 class='card-title'>$value</h5>";
+                                break;
+                            case "description":
+                                echo "<p class='card-text'>$value</p>";
+                                break;
+                            case "parking":
+                                echo "<span class='card-text me-3'>Parking: " . ($value ? "Yes" : "No") . "</span>";
+                                break;
+                            case 'vote':
+                                echo "<span class='card-text'>Vote: $value </span>";
+                                break;
+                            case 'distance_to_center':
+                                echo "<p class='card-text'>Distance to center: $value km</p>";
+                                break;
+                        }
                     };
-                    echo "</div>";
-                    echo "</div>";
-                    echo "</div>";
+                    echo "</div> </div> </div>";
                 }
             ?>
         </div>
